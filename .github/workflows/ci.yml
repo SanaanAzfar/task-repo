@@ -27,7 +27,12 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
+
+      - name: Fix Jest Permissions
+        run: chmod +x node_modules/.bin/jest
 
       - name: Run Tests
         run: npm test
